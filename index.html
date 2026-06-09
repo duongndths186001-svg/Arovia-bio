@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arovia — The Art of Scent</title>
+  <meta name="description" content="Fragrance with a Unique Signature. EST. 2026." />
+
+  <!-- ============================================================
+    HƯỚNG DẪN THAY ĐỔI NHANH:
+    1. AVATAR  → Tìm <img id="avatar"> → đổi src="URL_ẢNH_CỦA_BẠN"
+    2. TÊN     → Tìm <h1 class="brand-name"> → đổi chữ "Arovia"
+    3. TAGLINE → Tìm <p class="tagline"> → đổi các dòng mô tả
+    4. NÚT     → Tìm <a class="link-btn"> → đổi href="URL" và tên nút
+    5. MÀU     → Tìm :root ở dưới → đổi --accent để đổi màu nhấn
+  ============================================================ -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Token System ── */
+    :root {
+      --bg:        #ffffff;
+      --surface:   #FFFFFF;
+      --border:    #E8E4DF;
+      --text:      #1A1916;
+      --muted:     #7A756E;
+      --accent:    #B8965A;   /* ← ĐỔI MÀU NÀY để thay màu nhấn */
+      --radius:    14px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 20px 64px;
+    }
+
+    /* ── Card container ── */
+    .card {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* ── Avatar ── */
+    .avatar-wrap {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2.5px solid var(--border);
+      margin-bottom: 20px;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ĐỔI src bên dưới thành link ảnh avatar của bạn */
+    #avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .avatar-fallback {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+
+    /* ── Brand header ── */
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .tagline {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--muted);
+      text-align: center;
+      letter-spacing: 0.02em;
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .tagline .highlight {
+      display: block;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 15px;
+      color: #000000;
+      margin-top: 2px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.4;
+      margin-bottom: 28px;
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      align-self: flex-start;
+      margin-bottom: 10px;
+      margin-top: 8px;
+    }
+
+    /* ── Link buttons ── */
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    /* ĐỔI href="..." thành URL thực của bạn */
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 15px 18px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+      position: relative;
+    }
+
+    .link-btn:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 12px rgba(184,150,90,0.12);
+      transform: translateY(-1px);
+    }
+
+    .link-btn .btn-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .link-btn .btn-text {
+      flex: 1;
+    }
+
+    .link-btn .btn-label {
+      display: block;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .link-btn .btn-sub {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 300;
+      margin-top: 1px;
+    }
+
+    .link-btn .arrow {
+      color: var(--muted);
+      font-size: 16px;
+      transition: transform 0.2s, color 0.2s;
+    }
+
+    .link-btn:hover .arrow {
+      transform: translateX(3px);
+      color: var(--accent);
+    }
+
+    /* ── Social row ── */
+    .social-links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+
+    .social-btn:hover {
+      background: var(--surface);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .social-btn .social-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .social-btn .social-name {
+      font-weight: 500;
+      font-size: 14px;
+      display: block;
+    }
+
+    .social-btn .social-desc {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 300;
+      display: block;
+      margin-top: 1px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- ── AVATAR ── Đổi src thành link ảnh của bạn ── -->
+  <div class="avatar-wrap">
+    <img id="avatar"
+         src=""
+         alt="Arovia"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+    <span class="avatar-fallback" style="display:none;">A</span>
+  </div>
+
+  <!-- ── TÊN & TAGLINE ── -->
+  <h1 class="brand-name">Arovia</h1>
+  <p class="tagline">
+    Fragrance with a Unique Signature · EST. 2026
+    <span class="highlight">The Art of Scent</span>
+    <span class="highlight">Based in Vietnam 🇻🇳</span>
+  </p>
+
+  <div class="divider"></div>
+
+  <!-- ── NÚT CHÍNH ── Thêm / xoá / đổi href và tên tuỳ ý ── -->
+  <span class="section-label">Khám phá</span>
+  <div class="links">
+
+    <a class="link-btn" href="https://your-disc-link.com" target="_blank" rel="noopener">
+      <span class="btn-icon">🪞</span>
+      <span class="btn-text">
+        <span class="btn-label">Trắc nghiệm tính cách D.I.S.C</span>
+        <span class="btn-sub">Khám phá mùi hương phù hợp với bạn</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="link-btn" href="https://your-workshop-link.com" target="_blank" rel="noopener">
+      <span class="btn-icon">🌸</span>
+      <span class="btn-text">
+        <span class="btn-label">Đăng ký Workshop Nước Hoa</span>
+        <span class="btn-sub">Tự tay tạo ra mùi hương của riêng bạn</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+
+    <!-- Thêm nút mới bằng cách copy block <a class="link-btn"> bên trên -->
+
+  </div>
+
+  <!-- ── MẠNG XÃ HỘI ── Đổi href thành link thực của bạn ── -->
+  <span class="section-label">Tìm tôi trên</span>
+  <div class="social-links">
+
+    <a class="social-btn" href="https://facebook.com/arovia" target="_blank" rel="noopener">
+      <span class="social-icon" style="background:#E7F0FF;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+      </span>
+      <span>
+        <span class="social-name">Facebook</span>
+        <span class="social-desc">Cập nhật workshop, lịch tổ chức và ưu đãi</span>
+      </span>
+    </a>
+
+    <a class="social-btn" href="https://instagram.com/arovia" target="_blank" rel="noopener">
+      <span class="social-icon" style="background:#FFF0F6;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="url(#ig)"><defs><linearGradient id="ig" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#F9A825"/><stop offset="40%" stop-color="#E91E8C"/><stop offset="100%" stop-color="#7C4DFF"/></linearGradient></defs><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </span>
+      <span>
+        <span class="social-name">Instagram</span>
+        <span class="social-desc">Hình ảnh, cảm hứng và hành trình tạo dấu ấn</span>
+      </span>
+    </a>
+
+    <!-- Thêm kênh mới bằng cách copy block <a class="social-btn"> bên trên -->
+
+  </div>
+
+  <footer>arovia · theart of scent</footer>
+
+</div>
+
+</body>
+</html>
